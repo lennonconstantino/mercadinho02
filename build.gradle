@@ -62,10 +62,22 @@ repositories {
 	maven { url 'https://repo.spring.io/snapshot' }
 }
 
+apply plugin:'java'
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	implementation platform("software.amazon.awssdk:bom:2.20.86")
+	implementation 'software.amazon.awssdk:aws-core'
+	implementation 'software.amazon.awssdk:sqs'
+
+	//implementation 'org.springframework.boot:spring-boot-starter-spring-jms'
+	//compile group: 'org.springframework', name: 'spring-jms', version: '5.2.9.RELEASE'
+	implementation "org.springframework:spring-jms:6.1.4"
+	implementation "com.amazonaws:amazon-sqs-java-messaging-lib:2.1.1"
+	implementation "com.amazonaws:aws-java-sdk-sqs:1.12.704"
 }
 
 tasks.named('test') {
