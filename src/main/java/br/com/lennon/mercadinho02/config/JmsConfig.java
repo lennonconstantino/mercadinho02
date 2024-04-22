@@ -32,7 +32,7 @@ public class JmsConfig {
                         .withRegion(awsRegion)
                         .withCredentials(new DefaultAWSCredentialsProviderChain())
                         .build());
-
+        // comportamento
         DefaultJmsListenerContainerFactory factory =
                 new DefaultJmsListenerContainerFactory();
         factory.setConnectionFactory(sqsConnectionFactory);
