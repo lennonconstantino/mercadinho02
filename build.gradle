@@ -75,9 +75,13 @@ dependencies {
 
 	//implementation 'org.springframework.boot:spring-boot-starter-spring-jms'
 	//compile group: 'org.springframework', name: 'spring-jms', version: '5.2.9.RELEASE'
-	implementation "org.springframework:spring-jms:6.1.4"
-	implementation "com.amazonaws:amazon-sqs-java-messaging-lib:2.1.1"
+	implementation "org.springframework:spring-jms:5.3.34"
+	//implementation "com.amazonaws:amazon-sqs-java-messaging-lib:2.1.2"
+	implementation "com.amazonaws:amazon-sqs-java-messaging-lib:1.0.4"
 	implementation "com.amazonaws:aws-java-sdk-sqs:1.12.704"
+	implementation "jakarta.jms:jakarta.jms-api:3.1.0"
+
+	//annotationProcessor "jakarta.persistence:jakarta.persistence-api:3.1.0"
 }
 
 tasks.named('test') {
