@@ -1,10 +1,9 @@
 package br.com.lennon.mercadinho02.config;
 
-import br.com.lennon.mercadinho02.model.ProductEventLog;
+import br.com.lennon.mercadinho02.repository.ProductEventLogRepository;
 import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperConfig;
@@ -15,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
 @Configuration
-@EnableDynamoDBRepositories(basePackageClasses = ProductEventLog.class)
+@EnableDynamoDBRepositories(basePackageClasses = ProductEventLogRepository.class)
 public class DynamoDBConfig {
     @Value("${aws.region}")
     private String awsRegion;
