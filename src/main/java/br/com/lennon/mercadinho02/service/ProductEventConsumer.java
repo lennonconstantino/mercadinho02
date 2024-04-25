@@ -7,8 +7,6 @@ import br.com.lennon.mercadinho02.model.SnsMessage;
 import br.com.lennon.mercadinho02.repository.ProductEventLogRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.jms.JMSException;
-import jakarta.jms.Message;
-import jakarta.jms.TextMessage;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,11 +47,14 @@ public class ProductEventConsumer {
                 , snsMessage.getMessageId()
         );
 
-        ProductEventLog productEventLog = buildProductEventLog(envelope, productEvent);
+        ProductEventLog productEventLog = buildProductEventLog(envelope
+                , productEvent
+                , snsMessage.getMessageId()
+        );
         productEventLogRepository.save(productEventLog);
     }
 
-    private ProductEventLog buildProductEventLog(Envelope envelope, ProductEvent productEvent) {
+    private ProductEventLog buildProductEventLog(Envelope envelope, ProductEvent productEvent, String messageId) {
         long timestamp = Instant.now().toEpochMilli();
 
         ProductEventLog productEventLog = new ProductEventLog();
@@ -63,6 +64,7 @@ public class ProductEventConsumer {
         productEventLog.setProductId(productEvent.getProductId());
         productEventLog.setUsername(productEvent.getUsername());
         productEventLog.setTtl(Instant.now().plus(Duration.ofMinutes(10)).getEpochSecond());
+        productEventLog.setMessageId(messageId);
 
         return productEventLog;
     }
